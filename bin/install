@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'pathname'
+
+class DotfileLinker
+  def initialize(dotfiles_path)
+    @dotfiles_path = Pathname.new(dotfiles_path)
+    @base_path = @dotfiles_path.expand_path
+  end
+
+  def link(pointer_file, source_file)
+    if File.exist?("#{@base_path}/#{source_file}")
+      FileUtils.ln_s "#{@base_path}/#{source_file}", Pathname.new("~/#{pointer_file}").expand_path, force: true
+    else
+      puts "File, #{@base_path}/#{source_file}, doesn't exist"
+    end
+  end
+end
+
+linker = DotfileLinker.new("~/.dotfiles")
+
+# Vim
+linker.link(".vimrc", "vim/vimrc")
+
