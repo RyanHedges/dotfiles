@@ -12,6 +12,7 @@ class DotfileLinker
   def link(pointer_file, source_file)
     if File.exist?("#{@base_path}/#{source_file}")
       FileUtils.ln_s "#{@base_path}/#{source_file}", Pathname.new("~/#{pointer_file}").expand_path, force: true
+      puts "Finished linking ~/#{pointer_file} to ~/#{source_file}"
     else
       puts "File, #{@base_path}/#{source_file}, doesn't exist"
     end
@@ -21,5 +22,5 @@ end
 linker = DotfileLinker.new("~/.dotfiles")
 
 # Vim
-linker.link(".vimrc", "vim/vimrc")
+linker.link(".nvimrc", "nvim/nvimrc")
 
