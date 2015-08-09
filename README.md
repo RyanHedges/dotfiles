@@ -118,7 +118,7 @@ I'll explain the idea behind some of the pieces that make it work.
 This tells the file what interpreter to use when executing the file. I picked
 ruby since it is the language I'm most familiar with but you can use whatever
 you want that interact with your file system. You can read more about [sheband
-here](https://en.wikipedia.org/wiki/Shebang_(Unix).
+here](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 
 ```ruby
 def link(pointer_file, source_file)
