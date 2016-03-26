@@ -1,9 +1,9 @@
 [user]
-    name = Ryan Hedges
-    email = ryanhedges@gmail.com
+	name = Ryan Hedges
+	email = ryanhedges@gmail.com
 
 [github]
-    user = RyanHedges
+	name = RyanHedges
 
 [color]
-    ui = auto
+	ui = auto
