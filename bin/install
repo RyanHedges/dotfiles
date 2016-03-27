@@ -22,6 +22,7 @@ end
 linker = DotfileLinker.new("~/.dotfiles")
 
 linker.link(".gitconfig", "git/gitconfig")
+linker.link(".zshrc", "zsh/zshrc")
 
 # Vim
 #linker.link(".nvimrc", "nvim/nvimrc")
