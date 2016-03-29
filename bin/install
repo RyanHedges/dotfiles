@@ -7,12 +7,18 @@ class DotfileLinker
   def initialize(dotfiles_path)
     @dotfiles_path = Pathname.new(dotfiles_path)
     @base_path = @dotfiles_path.expand_path
+    @home_dir = Pathname.new("./")
   end
 
   def link(pointer_file, source_file)
+    pointer_full_path = File.expand_path(Pathname.new("#{@home_dir}/#{pointer_file}"))
     if File.exist?("#{@base_path}/#{source_file}")
-      FileUtils.ln_s "#{@base_path}/#{source_file}", Pathname.new("~/#{pointer_file}").expand_path, force: true
-      puts "Finished linking ~/#{pointer_file} to ~/#{source_file}"
+      if File.symlink?(pointer_full_path)
+        puts "#{pointer_full_path} already exists. Skipping link"
+      else
+        FileUtils.ln_s "#{@base_path}/#{source_file}", pointer_full_path, force: true
+        puts "Finished linking ~/#{pointer_file} to ~/#{source_file}"
+      end
     else
       puts "File, #{@base_path}/#{source_file}, doesn't exist"
     end
@@ -24,7 +30,4 @@ linker = DotfileLinker.new("~/.dotfiles")
 linker.link(".gitconfig", "git/gitconfig")
 linker.link(".gitignore", "git/gitignore")
 linker.link(".zshrc", "zsh/zshrc")
-
-# Vim
-#linker.link(".nvimrc", "nvim/nvimrc")
-
+linker.link(".vim", "vim")
