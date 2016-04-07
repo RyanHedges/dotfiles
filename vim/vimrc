@@ -61,7 +61,7 @@ filetype plugin indent on "smart indenting using ==
 let mapleader = "," " Remap <Leader> key from \ (backslash) to , (comma)
 
 " remap esc key for exiting insert mode
-:imap jj <Esc>
+:imap jk <Esc>
 
 " cyphactor/vim-open-alternate
 nnoremap <leader>m :OpenAlternate<cr>
