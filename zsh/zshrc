@@ -1,3 +1,7 @@
+# Allow colors
+autoload -U colors; colors
+
+# Load shims for rbenv
 if which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
@@ -12,8 +16,18 @@ setopt menucomplete
 # -----------------
 setopt HIST_IGNORE_ALL_DUPS # Removes duplicate lines from history
 
-autoload -U colors; colors
-PROMPT="%{${fg[red]}%}%~
-%{${fg[green]}%}$ %{${fg[default]}%}"
+# ---- Prompt ----
+# ----------------
+# http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*' formats '%b'
+zstyle ':vcs_info:git' command /usr/local/bin/git
 
-RPROMPT="%{${fg[blue]}%}%w @ %D{%L:%M:%S}%{${fg[default]}%}"
+PROMPT="%{${fg[green]}%}%~ %{${fg[yellow]}%}\$vcs_info_msg_0_
+%{${fg[green]}%}$ %{$reset_color%}"
+
+RPROMPT="%{${fg[blue]}%}%w 🕑 %D{%L:%M:%S}%{${fg[default]}%}"
