@@ -1,7 +1,7 @@
 " enable pathogen to load vim bundles in ~/.vim/bundle/
 " Generate help dogumentation with pathogen helptags helper
-"""execute pathogen#infect()
-"""execute pathogen#helptags()
+execute pathogen#infect()
+execute pathogen#helptags()
 
 " ==== Visual Settings ==== "
 
@@ -139,7 +139,9 @@ set showtabline=2 " ALWAYS show tab line at the top
   let g:ctrlp_show_hidden = 1
 
   " --- Ack / Ag --- "
-  let g:ackprg = 'ag --nogroup --nocolor --column' " use Ag with ack.vim
+  if executable('ag')
+    let g:ackprg = 'ag --nogroup --nocolor --column' " use Ag with ack.vim
+  endif
   nnoremap <leader>f :Ack!<space>
 
   " --- cyphactor/Test Recall --- "

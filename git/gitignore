@@ -1,3 +1,5 @@
 .DS\_Store
 *.sw?
 .netrwhist
+tags
+!tags/

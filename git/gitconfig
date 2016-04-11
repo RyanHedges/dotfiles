@@ -11,6 +11,13 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore
+
+[status]
+  submoduleSummary = true
+
+[diff]
+  submodule = log
+
 [alias]
   l = log --graph --abbrev-commit --date=relative --pretty=format:\"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\" --topo-order
   la = !git l --all

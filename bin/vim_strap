@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Save path where this was executed
+originalDir=$(pwd)
+
+# ---- Install Silver Searcher ----
+# ---------------------------------
+grnprint "Installing Ack..."
+brew install ack
+
+# ---- Install Silver Searcher ----
+# ---------------------------------
+grnprint "Installing Silver Searcher..."
+brew install the_silver_searcher
+
+# ---- Install vim submodules ----
+# --------------------------------
+cd ~/.dotfiles/vim/bundle
+git submodule update --init
+
+# returns to where this was executed
+cd $originalDir
