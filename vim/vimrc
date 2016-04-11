@@ -16,6 +16,7 @@ set number " Show line numbers
 set numberwidth=5 " Min number of characters to use for the line number column
 set cursorline " Underlines the cursors current line in the file
 set scrolloff=5 "Minimum number of lines of context to keep around cursor
+set updatetime=500 "write swap file if nothing is typed for 500ms
 
 let g:netrw_liststyle=3 " default tree structure
 
@@ -151,3 +152,8 @@ set showtabline=2 " ALWAYS show tab line at the top
   "map <leader>c :call RunAllCucumberFeatures()<cr>
   "map <leader>w :call RunWipCucumberFeatures()<cr>
   let g:vim_test_recall_rspec_command = 'bundle exec rspec'
+
+  " --- gitguter --- "
+  " Toggle row highlighting
+  map <leader>gh :GitGutterLineHighlightsToggle<cr>
+  let g:gitgutter_sign_column_always = 1
