@@ -18,8 +18,6 @@ set cursorline " Underlines the cursors current line in the file
 set scrolloff=5 "Minimum number of lines of context to keep around cursor
 set updatetime=500 "write swap file if nothing is typed for 500ms
 
-let g:netrw_liststyle=3 " default tree structure
-
 " Works for iTerm
 let &t_SI = "\<Esc>]50;CursorShape=1\x7" " insert mode vertical bar cursor
 let &t_EI = "\<Esc>]50;CursorShape=0\x7" " all other modes bloack cursor
@@ -123,10 +121,9 @@ set showtabline=2 " ALWAYS show tab line at the top
   map <Up> :echo "STOP IT!"<cr>
   map <Down> :echo "STOP IT!"<cr>
 
-  " --- NERDTREE --- "
-  " ,n will toggle the nerd tree open and close
-""map <leader>n :NERDTreeToggle<CR>
-""let g:NERDTreeShowHidden=1 " Show hidden files in nerdtre
+  " --- netrw --- "
+  let g:netrw_liststyle = 3 " default tree structure
+  map <leader>n :Nexplore .<CR>
 
   " --- CTRL P --- "
   " search tags
