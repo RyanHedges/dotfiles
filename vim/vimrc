@@ -5,8 +5,7 @@ execute pathogen#helptags()
 
 " ==== Visual Settings ==== "
 
-  " --- BASE16 Color --- "
-""let base16colorspace=256  " base16 requires this to tell it to use 256 color space in iTerm
+  " --- Color --- "
   set background=dark       " Tell vim that colorscheme is on a dark background
   colorscheme jellybeans  " Use the Jellybeans color scheme
 
@@ -150,7 +149,8 @@ set showtabline=2 " ALWAYS show tab line at the top
   "map <leader>w :call RunWipCucumberFeatures()<cr>
   let g:vim_test_recall_rspec_command = 'bundle exec rspec'
 
-  " --- gitguter --- "
+  " --- gitgutter --- "
   " Toggle row highlighting
   map <leader>gh :GitGutterLineHighlightsToggle<cr>
+  " prevent git gutter from moving the line column with changes
   let g:gitgutter_sign_column_always = 1
