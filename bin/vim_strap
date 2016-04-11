@@ -1,17 +1,31 @@
 #!/bin/sh
+gprint() {
+  local msg="$1"; shift
+  printf "\e[32m$msg\e[0m\n"
+}
+
+yprint() {
+  local msg="$1"; shift
+  printf "\e[33m$msg\e[0m\n"
+}
+
+brew_install() {
+  local pkg="$1"; shift
+  if ! command -v brew ls --version $pkg >/dev/null; then
+    gprint "Installing $pkg..."
+    brew install $pkg
+  else
+    yprint "$pkg already installed"
+  fi
+}
+
 
 # Save path where this was executed
 originalDir=$(pwd)
 
-# ---- Install Silver Searcher ----
-# ---------------------------------
-grnprint "Installing Ack..."
-brew install ack
-
-# ---- Install Silver Searcher ----
-# ---------------------------------
-grnprint "Installing Silver Searcher..."
-brew install the_silver_searcher
+gprint "Brew installing Vim dependencies"
+brew_install ack
+brew_install the_silver_searcher
 
 # ---- Install vim submodules ----
 # --------------------------------
