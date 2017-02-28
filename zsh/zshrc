@@ -19,15 +19,36 @@ setopt HIST_IGNORE_ALL_DUPS # Removes duplicate lines from history
 # ---- Prompt ----
 # ----------------
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
+#
+# Load version control system from zsh
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
+
+#Enable only git
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats '%b'
+#Look for staged and unstaged changes
+zstyle ':vcs_info:git*' check-for-changes true
+#Turn on getting the git sha
+zstyle ':vcs_info:git*' get-revision true
+#Format for %m in action format (rebase)
+zstyle ':vcs_info:git*' patch-format '%F{magenta}applying %n/%a Current - %7.7p%f'
+#Style for when there are unstaged changes
+zstyle ':vcs_info:git*' unstagedstr '%F{red}*%f'
+#Style for when there are staged changes
+zstyle ':vcs_info:git*' stagedstr '%F{green}+%f'
+#Format of vcs_info_msg
+zstyle ':vcs_info:git*' formats '%b%u%c %F{cyan}%7.7i%f'
+#format of vcs_info_msg when special action happening (rebase etc.)
+zstyle ':vcs_info:git*' actionformats '(%a) %b%u%c %F{cyan}%7.7i %m%f'
+#location of git
 zstyle ':vcs_info:git' command /usr/local/bin/git
+
+# parameter expansion, command substitution and arithmetic expansion are
+# performed in prompts.
+setopt prompt_subst
 
 PROMPT="%{${fg[green]}%}%~ %{${fg[yellow]}%}\$vcs_info_msg_0_
 %{${fg[green]}%}$ %{$reset_color%}"
 
-RPROMPT="%{${fg[blue]}%}%w 🕑 %D{%L:%M:%S}%{${fg[default]}%}"
+RPROMPT="%{${fg[blue]}%}%w 🕑  %D{%L:%M:%S}%{${fg[default]}%}"
