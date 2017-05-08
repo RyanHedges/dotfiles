@@ -11,7 +11,7 @@ yprint() {
 
 brew_install() {
   local pkg="$1"; shift
-  if ! command -v brew ls --version $pkg >/dev/null; then
+  if ! brew ls --versions $pkg >/dev/null; then
     gprint "Installing $pkg..."
     brew install $pkg
   else
