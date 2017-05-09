@@ -2,7 +2,7 @@
 autoload -U colors; colors
 
 # Load shims for rbenv
-if which rbenv > /dev/null; then
+if command which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
 
