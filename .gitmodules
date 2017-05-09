@@ -16,3 +16,7 @@
 [submodule "vim/bundle/vim-open-alternate"]
 	path = vim/bundle/vim-open-alternate
 	url = git@github.com:cyphactor/vim-open-alternate.git
+[submodule "vim/bundle/vim-marked"]
+	path = vim/bundle/vim-marked
+	url = https://github.com/itspriddle/vim-marked.git
+	ignore = dirty
