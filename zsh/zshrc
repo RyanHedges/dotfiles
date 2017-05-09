@@ -55,4 +55,5 @@ setopt prompt_subst
 PROMPT="%{${fg[green]}%}%~ %{${fg[yellow]}%}\$vcs_info_msg_0_
 %{${fg[green]}%}$ %{$reset_color%}"
 
-RPROMPT="%{${fg[blue]}%}%w 🕑  %D{%L:%M:%S}%{${fg[default]}%}"
+RUBYVERSION='$(rbenv version-name)'
+RPROMPT="%{${fg[red]}%}${RUBYVERSION} %{${fg[blue]}%}%w 🕑  %D{%L:%M:%S}%{${fg[default]}%}"
