@@ -14,7 +14,11 @@ setopt menucomplete
 
 # ---- History ----
 # -----------------
-setopt HIST_IGNORE_ALL_DUPS # Removes duplicate lines from history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zhistory
+# Removes duplicate lines from history
+setopt HIST_IGNORE_ALL_DUPS
 
 # ---- Prompt ----
 # ----------------
