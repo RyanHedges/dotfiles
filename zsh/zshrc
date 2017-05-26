@@ -17,8 +17,22 @@ setopt menucomplete
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
+# Adds history as soon as they are entered
+setopt INC_APPEND_HISTORY
 # Removes duplicate lines from history
 setopt HIST_IGNORE_ALL_DUPS
+
+alias g='git '
+alias gc='git commit -v '
+alias gco='git checkout '
+alias ga='git add -p '
+alias gd='git diff '
+alias gf='git fetch -p '
+alias gb='git branch '
+alias gcm='git checkout master'
+alias gst='git status'
+alias grbi='git rebase -i '
+
 
 # ---- Prompt ----
 # ----------------
