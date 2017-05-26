@@ -121,8 +121,12 @@ set showtabline=2 " ALWAYS show tab line at the top
   map <Down> :echo "STOP IT!"<cr>
 
   " --- netrw --- "
-  let g:netrw_liststyle = 3 " default tree structure
-  map <leader>n :Lexplore<CR>
+  let g:netrw_liststyle = 1 " default tree structure
+  let g:netrw_use_errorwindow = 0
+  "let g:netrw_banner=0 " hide netrw banner
+  "let g:netrw_browse_split = 4 " open file in previous window
+  "let g:netrw_winsize = 25 " directory explorer at 25%
+  map <leader>n :e .<CR>
 
   " --- CTRL P --- "
   " search tags
