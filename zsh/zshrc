@@ -1,3 +1,5 @@
+export PATH="/usr/local/sbin:$PATH"
+
 # Allow colors
 autoload -U colors; colors
 
@@ -56,9 +58,9 @@ zstyle ':vcs_info:git*' unstagedstr '%F{red}*%f'
 #Style for when there are staged changes
 zstyle ':vcs_info:git*' stagedstr '%F{green}+%f'
 #Format of vcs_info_msg
-zstyle ':vcs_info:git*' formats '%b%u%c %F{cyan}%7.7i%f'
+zstyle ':vcs_info:git*' formats '%b%u%c %F{magenta}%7.7i%f'
 #format of vcs_info_msg when special action happening (rebase etc.)
-zstyle ':vcs_info:git*' actionformats '(%a) %b%u%c %F{cyan}%7.7i %m%f'
+zstyle ':vcs_info:git*' actionformats '(%a) %b%u%c %F{red}%7.7i %m%f'
 #location of git
 zstyle ':vcs_info:git' command /usr/local/bin/git
 
@@ -66,7 +68,7 @@ zstyle ':vcs_info:git' command /usr/local/bin/git
 # performed in prompts.
 setopt prompt_subst
 
-PROMPT="%{${fg[green]}%}%~ %{${fg[yellow]}%}\$vcs_info_msg_0_
+PROMPT="%{${fg[green]}%}%~ %{${fg[cyan]}%}\$vcs_info_msg_0_
 %{${fg[green]}%}$ %{$reset_color%}"
 
 RUBYVERSION='$(rbenv version-name)'
