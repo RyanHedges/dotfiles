@@ -63,7 +63,7 @@ zstyle ':vcs_info:git*' stagedstr '%F{green}+%f'
 zstyle ':vcs_info:git*' formats '%b%u%c %F{magenta}%7.7i%f'
 #format of vcs_info_msg when special action happening (rebase etc.)
 zstyle ':vcs_info:git*' actionformats '(%a) %b%u%c %F{red}%7.7i %m%f'
-#Add style for untracked files to be added to %c output
+#Add style for untracked files to be added to %u output
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked
 +vi-git-untracked(){
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
