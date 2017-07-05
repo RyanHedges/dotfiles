@@ -154,7 +154,7 @@ set showtabline=2 " ALWAYS show tab line at the top
   "map <leader>w :call RunWipCucumberFeatures()<cr>
   let g:vim_test_recall_rspec_command = 'bundle exec rspec'
 
-  :map <Leader>A :!RAILS_ENV=test bundle exec rspec --exclude-pattern "**/hanami/**/*_spec.rb"<cr>
+  :map <Leader>A :!RAILS_ENV=test bundle exec rspec -f d<cr>
 
   " --- gitgutter --- "
   " Toggle row highlighting
