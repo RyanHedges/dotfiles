@@ -35,7 +35,7 @@ alias gb='git branch '
 alias gcm='git checkout master'
 alias gst='git status'
 alias grbi='git rebase -i '
-
+alias grbc='git rebase --continue '
 
 # ---- Prompt ----
 # ----------------
