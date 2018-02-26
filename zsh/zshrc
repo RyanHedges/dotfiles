@@ -1,4 +1,4 @@
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 # Allow colors
 autoload -U colors; colors
@@ -13,6 +13,10 @@ fi
 autoload -U compinit; compinit
 # Show completion on first TAB
 setopt menucomplete
+
+# ---- Vi for editing command line ----
+# --------------------------------------
+set -o vi
 
 # ---- History ----
 # -----------------
@@ -36,6 +40,7 @@ alias gcm='git checkout master'
 alias gst='git status'
 alias grbi='git rebase -i '
 alias grbc='git rebase --continue '
+alias cl='clear'
 
 # ---- Prompt ----
 # ----------------
