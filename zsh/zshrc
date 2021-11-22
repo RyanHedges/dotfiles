@@ -47,6 +47,10 @@ alias gpsr='git-ps rebase '
 alias gpsl='git-ps ls'
 alias gpsp='git-ps pull'
 
+#Flutter
+alias ff='fvm flutter '
+alias fd='fvm dart '
+
 # ---- Prompt ----
 # ----------------
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
