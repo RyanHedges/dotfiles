@@ -1,4 +1,3 @@
-export PATH="/usr/local/sbin:/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 # https://superuser.com/questions/313650/resume-zsh-terminal-os-x-lion/328148#328148
 # Tell the terminal about the working directory whenever it changes.
