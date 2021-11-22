@@ -10,7 +10,7 @@ class DotfileLinker
     @home_dir = Pathname.new("./")
   end
 
-  def link(pointer_file, source_file
+  def link(pointer_file, source_file)
     base_with_source = "#{@base_path}/#{source_file}"
     pointer_full_path = File.expand_path(Pathname.new("#{@home_dir}/#{pointer_file}"))
     if File.exist?(base_with_source)
