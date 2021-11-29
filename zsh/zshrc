@@ -1,5 +1,8 @@
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
+# Add FVM to path
+export PATH="~/fvm/default/bin:$PATH"
+
 # https://superuser.com/questions/313650/resume-zsh-terminal-os-x-lion/328148#328148
 # Tell the terminal about the working directory whenever it changes.
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
