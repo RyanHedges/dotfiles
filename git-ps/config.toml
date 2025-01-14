@@ -1,0 +1,11 @@
+[pull]
+show_list_post_pull = true
+
+[integrate]
+require_verification = true
+
+[fetch]
+show_upstream_patches_after_fetch = true
+
+[list]
+add_extra_patch_info = false
