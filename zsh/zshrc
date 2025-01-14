@@ -44,6 +44,9 @@ if command which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
 
+# Helps with git-ps-rs auto complete
+fpath=(/opt/homebrew/share/zsh/site-functions/ $fpath)
+
 # ---- Command Completion ----
 # ----------------------------
 autoload -U compinit; compinit
