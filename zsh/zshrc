@@ -1,3 +1,9 @@
+RED=$'\e[31m'
+GREEN=$'\e[32m'
+YELLOW=$'\e[33m'
+BLUE=$'\e[34m'
+RESET=$'\e[0m'
+
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 # Add FVM to path
@@ -43,6 +49,38 @@ autoload -U colors; colors
 if command which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
+
+# Auto detect and install the ruby version defined in .ruby-version if
+# avaialable
+function rbenv_auto_install() {
+  # Make sure we're in a directory that has a .ruby-version file
+  if [[ -f .ruby-version ]]; then
+    local ruby_version
+    ruby_version="$(< .ruby-version)"
+
+    # Check if rbenv already has this version installed
+    if ! rbenv versions --bare | grep -qx "$ruby_version"; then
+      # Prompt user for yes/no confirmation
+      echo "${RED}Ruby version $ruby_version found in .ruby-version is not installed. Install $ruby_version? [y/N]${RESET}"
+      echo -n "> "  # print a '>' prompt on the same line
+      read -r answer
+      if [[ $answer =~ ^[Yy]$ ]]; then
+        echo "${GREEN}Installing Ruby $ruby_version...${RESET}"
+        rbenv install "$ruby_version"
+        rbenv rehash
+      else
+        echo "${YELLOW}Skipping installation of Ruby $ruby_version${RESET}"
+      fi
+    fi
+  fi
+}
+
+# Ensure rbenv_auto_install runs whenever you enter a new directory
+autoload -U add-zsh-hook
+add-zsh-hook chpwd rbenv_auto_install
+
+# Also run it once on initial shell load
+rbenv_auto_install
 
 # Helps with git-ps-rs auto complete
 fpath=(/opt/homebrew/share/zsh/site-functions/ $fpath)
