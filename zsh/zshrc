@@ -81,10 +81,6 @@ alias gst='git status'
 alias grbi='git rebase -i '
 alias grbc='git rebase --continue '
 alias cl='clear'
-alias gps='git-ps '
-alias gpsr='git-ps rebase '
-alias gpsl='git-ps ls'
-alias gpsp='git-ps pull'
 
 #Flutter
 alias ff='fvm flutter '
