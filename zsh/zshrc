@@ -124,6 +124,9 @@ alias cl='clear'
 alias ff='fvm flutter '
 alias fd='fvm dart '
 
+# Ruby
+alias be='bundle exec '
+
 # ---- Prompt ----
 # ----------------
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
