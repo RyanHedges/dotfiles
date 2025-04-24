@@ -197,6 +197,10 @@ load-nvmrc() {
   fi
 }
 
+source ~/.dotfiles/zsh/git_cleanup.zsh
+# Define the alias
+alias gbcl=cleanup_git_branches
+
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
