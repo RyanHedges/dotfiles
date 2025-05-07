@@ -1,2 +1,7 @@
 vim/.netrwhist
 *.swp
+
+/zed/.tmp*
+/zed/embeddings/
+/zed/conversations/
+/zed/prompts/
