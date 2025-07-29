@@ -9,7 +9,18 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
+      "cmd-k l": [
+        "workspace::MoveItemToPaneInDirection",
+        {
+          "direction": "right"
+        }
+      ],
+      "cmd-k h": [
+        "workspace::MoveItemToPaneInDirection",
+        {
+          "direction": "left"
+        }
+      ]
     }
   },
   {
