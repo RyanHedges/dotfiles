@@ -206,4 +206,3 @@ alias gbcl=cleanup_git_branches
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
