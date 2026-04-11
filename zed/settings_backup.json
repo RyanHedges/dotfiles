@@ -7,6 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    }
+  },
+  "debugger": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "hide_gitignore": false
+  },
   "edit_predictions": {
     "disabled_globs": [
       "**/*.enc", // Any encrypted files
@@ -28,11 +39,9 @@
     "edit_prediction_provider": "copilot"
   },
   "agent": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-7-sonnet"
-    },
-    "version": "2"
+    "favorite_models": [],
+    "default_profile": "ask",
+    "model_parameters": []
   },
   "vim_mode": true,
   "vertical_scroll_margin": 10,
@@ -65,7 +74,8 @@
   "auto_install_extensions": {
     "ruby": true,
     "html": true,
-    "catppuccin": true
+    "catppuccin": true,
+    "catppuccin-icons": true
   },
   "languages": {
     "Ruby": {
@@ -115,7 +125,11 @@
   },
   "minimap": {
     "show": "auto"
+  },
+  "file_types": {
+    "GitHub Actions": [".github/workflows/*.yml", ".github/workflows/*.yaml"]
   }
+
   // This isn't working but I don't want to keep debugging the searching right now
   // "file_scan_inclusions": ["./Gemfile.lock"],
   // "file_scan_exclusions": ["**/node_modules", "**/.ruby-lsp/"]

@@ -7,7 +7,22 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "OpenCode": {
+      "type": "custom",
+      "command": "opencode",
+      "args": ["acp"],
+      "env": {},
+    },
+  },
+  "debugger": {
+    "dock": "right",
+  },
+  "project_panel": {
+    "hide_gitignore": false,
+  },
   "edit_predictions": {
+    "provider": "copilot",
     "disabled_globs": [
       "**/*.enc", // Any encrypted files
       "**/*.key", // Any key files (e.g., master.key, SSH keys, etc.)
@@ -20,51 +35,54 @@
       "db/*.dump", // PostgreSQL dump files (binary format)
       "db/dumps/*", // Any structured dump directory
       ".git-credentials", // Git credentials file
-      ".gitconfig" // Git user config (may contain auth tokens)
+      ".gitconfig", // Git user config (may contain auth tokens)
     ],
-    "mode": "eager"
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
+    "mode": "eager",
   },
   "agent": {
     "default_model": {
+      "effort": "high",
       "provider": "copilot_chat",
-      "model": "claude-3-7-sonnet"
+      "model": "gpt-5-mini",
+      "enable_thinking": false,
     },
+    "favorite_models": [],
+    "default_profile": "ask",
+    "model_parameters": [],
   },
   "vim_mode": true,
   "vertical_scroll_margin": 10,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "ui_font_size": 16,
   "buffer_font_size": null,
   "buffer_font_family": "mononoki",
   "inlay_hints": {
-    "enabled": true
+    "enabled": true,
   },
   "theme": {
     "mode": "system",
     "light": "Catppuccin Frappé",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Frappé",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "indent_guides": {
     "active_line_width": 3,
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "auto_install_extensions": {
     "ruby": true,
     "html": true,
-    "catppuccin": true
+    "catppuccin": true,
+    "catppuccin-icons": true,
   },
   "languages": {
     "Ruby": {
@@ -74,47 +92,51 @@
         "!solargraph",
         "!steep",
         "!sorbet",
-        "..."
-      ]
-    }
+        "...",
+      ],
+    },
   },
   "lsp": {
     "ruby-lsp": {
       "settings": {
-        "use_bundler": true
+        "use_bundler": true,
       },
       "initialization_options": {
         "enabledFeatures": {
-          "diagnostics": true
+          "diagnostics": true,
         },
-        "formatting": true
-      }
+        "formatting": true,
+      },
     },
     "rubocop": {
       "settings": {
-        "use_bundler": true
+        "use_bundler": true,
       },
       "initialization_options": {
-        "safeAutocorrect": false
-      }
-    }
+        "safeAutocorrect": false,
+      },
+    },
   },
   "autosave": "on_window_change",
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
   },
   "git": {
     "inline_blame": {
-      "show_commit_summary": true
-    }
+      "show_commit_summary": true,
+    },
   },
   "terminal": {
-    "blinking": "on"
+    "blinking": "on",
   },
   "minimap": {
-    "show": "auto"
-  }
+    "show": "auto",
+  },
+  "file_types": {
+    "GitHub Actions": [".github/workflows/*.yml", ".github/workflows/*.yaml"],
+  },
+
   // This isn't working but I don't want to keep debugging the searching right now
   // "file_scan_inclusions": ["./Gemfile.lock"],
   // "file_scan_exclusions": ["**/node_modules", "**/.ruby-lsp/"]
