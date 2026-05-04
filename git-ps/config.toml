@@ -2,7 +2,8 @@
 show_list_post_pull = true
 
 [integrate]
-require_verification = true
+verify_isolation = true
+pull_after_integrate = true
 
 [fetch]
 show_upstream_patches_after_fetch = true
