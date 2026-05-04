@@ -19,6 +19,7 @@
     "dock": "right",
   },
   "project_panel": {
+    "dock": "left",
     "hide_gitignore": false,
   },
   "edit_predictions": {
@@ -40,6 +41,7 @@
     "mode": "eager",
   },
   "agent": {
+    "dock": "right",
     "default_model": {
       "effort": "high",
       "provider": "copilot_chat",
