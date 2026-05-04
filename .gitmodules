@@ -9,13 +9,13 @@
 	url = git@github.com:airblade/vim-gitgutter.git
 [submodule "vim/bundle/vim-test-recall"]
 	path = vim/bundle/vim-test-recall
-	url = git@github.com:cyphactor/vim-test-recall.git
+	url = git@git.drewdeponte.com/vim-test-recall.git
 [submodule "vim/bundle/vim-endwise"]
 	path = vim/bundle/vim-endwise
 	url = git@github.com:tpope/vim-endwise.git
 [submodule "vim/bundle/vim-open-alternate"]
 	path = vim/bundle/vim-open-alternate
-	url = git@github.com:cyphactor/vim-open-alternate.git
+	url = git://git.drewdeponte.com/vim-open-alternate.git
 [submodule "vim/bundle/vim-marked"]
 	path = vim/bundle/vim-marked
 	url = https://github.com/itspriddle/vim-marked.git
