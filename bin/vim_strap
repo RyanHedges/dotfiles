@@ -30,6 +30,7 @@ brew_install the_silver_searcher
 # ---- Install vim submodules ----
 # --------------------------------
 cd ~/.dotfiles/vim/bundle
+git submodule sync
 git submodule update --init
 
 # returns to where this was executed
