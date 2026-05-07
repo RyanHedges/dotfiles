@@ -32,3 +32,7 @@
 	format = ssh
 [commit]
 	gpgsign = true
+[includeIf "gitdir:/Users/ryanhedges/projects/ryanhedges/"]
+	path = /Users/ryanhedges/.dotfiles/git/gitconfig-github
+[includeIf "gitdir:/Users/ryanhedges/projects/prism/"]
+	path = /Users/ryanhedges/.dotfiles/git/gitconfig-prismlabs

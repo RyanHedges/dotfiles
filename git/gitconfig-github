@@ -1,0 +1,10 @@
+[user]
+    email = ryanhedges@gmail.com
+
+[core]
+    # sshCommand is required for multi-account support on the same host (e.g., multiple GitHub accounts).
+    # SSH config (config.d/*.conf) routes by hostname only — it cannot distinguish between two accounts
+    # on github.com. git's sshCommand routes by directory via the includeIf in gitconfig, ensuring
+    # the correct key is used per project regardless of what the SSH agent has loaded.
+    # The config.d file is still used for direct SSH testing (e.g., ssh -T git@github.com).
+    sshCommand = "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -F /dev/null"
