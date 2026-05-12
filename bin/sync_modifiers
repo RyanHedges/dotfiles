@@ -1,41 +1,58 @@
-#!/usr/bin/env bash
+#!/usr/bin/env swift
+import Foundation
 
-# Reads macOS System Preferences for modifier key mappings.
-# If Caps Lock is mapped to Control anywhere in the UI settings,
-# it applies that mapping globally to all keyboards via hidutil.
-# This ensures any external keyboard inherits the UI setting automatically.
+// Reads macOS System Preferences for modifier key mappings.
+// If Caps Lock is mapped to Control anywhere in the UI settings,
+// it applies that mapping globally to all keyboards via hidutil.
+// This ensures any external keyboard inherits the UI setting automatically.
 
-# Magic numbers:
-# 30064771129 (0x700000039) = Caps Lock
-# 30064771296 (0x7000000E0) = Left Control
+// Magic numbers:
+// 30064771129 (0x700000039) = Caps Lock
+// 30064771296 (0x7000000E0) = Left Control
 
-python3 -c '
-import sys, plistlib, subprocess, json
+func isMapped() -> Bool {
+    let task = Process()
+    task.launchPath = "/usr/bin/defaults"
+    task.arguments = ["-currentHost", "export", "-g", "-"]
+    let pipe = Pipe()
+    task.standardOutput = pipe
+    task.launch()
+    
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+    
+    guard let plist = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any] else {
+        fputs("Error: Could not parse plist data\n", stderr)
+        return false
+    }
+    
+    for (key, value) in plist {
+        if key.contains("modifiermapping"), let mappings = value as? [[String: Any]] {
+            for mapping in mappings {
+                if let src = mapping["HIDKeyboardModifierMappingSrc"] as? Int, src == 30064771129,
+                   let dst = mapping["HIDKeyboardModifierMappingDst"] as? Int, dst == 30064771296 {
+                    return true
+                }
+            }
+        }
+    }
+    return false
+}
 
-def is_mapped():
-    try:
-        # Read the global preferences for the current host (where UI writes modifier mappings)
-        p = subprocess.run(["defaults", "-currentHost", "export", "-g", "-"], capture_output=True, check=True)
-        data = plistlib.loads(p.stdout)
-        for key, value in data.items():
-            if "modifiermapping" in key and isinstance(value, list):
-                for mapping in value:
-                    if mapping.get("HIDKeyboardModifierMappingSrc") == 30064771129 and \
-                       mapping.get("HIDKeyboardModifierMappingDst") == 30064771296:
-                        return True
-    except Exception as e:
-        print(f"Error reading plist: {e}", file=sys.stderr)
-    return False
+func runHidutil(clear: Bool) {
+    let mappingString = clear ? "[]" : "[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x7000000E0}]"
+    let jsonString = "{\"UserKeyMapping\":\(mappingString)}"
+    
+    let task = Process()
+    task.launchPath = "/usr/bin/env"
+    task.arguments = ["hidutil", "property", "--set", jsonString]
+    task.launch()
+    task.waitUntilExit()
+}
 
-if is_mapped():
+if isMapped() {
     print("Caps Lock -> Control mapping found in System Settings. Applying globally via hidutil.")
-    # Apply global mapping to hardware layer
-    subprocess.run([
-        "hidutil", "property", "--set",
-        json.dumps({"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]})
-    ])
-else:
+    runHidutil(clear: false)
+} else {
     print("Caps Lock -> Control mapping NOT found in System Settings. Clearing hidutil global mapping.")
-    # Clear global mapping
-    subprocess.run(["hidutil", "property", "--set", json.dumps({"UserKeyMapping":[]})])
-'
+    runHidutil(clear: true)
+}
