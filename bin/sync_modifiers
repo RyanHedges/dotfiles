@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Reads macOS System Preferences for modifier key mappings.
+# If Caps Lock is mapped to Control anywhere in the UI settings,
+# it applies that mapping globally to all keyboards via hidutil.
+# This ensures any external keyboard inherits the UI setting automatically.
+
+# Magic numbers:
+# 30064771129 (0x700000039) = Caps Lock
+# 30064771296 (0x7000000E0) = Left Control
+
+python3 -c '
+import sys, plistlib, subprocess, json
+
+def is_mapped():
+    try:
+        # Read the global preferences for the current host (where UI writes modifier mappings)
+        p = subprocess.run(["defaults", "-currentHost", "export", "-g", "-"], capture_output=True, check=True)
+        data = plistlib.loads(p.stdout)
+        for key, value in data.items():
+            if "modifiermapping" in key and isinstance(value, list):
+                for mapping in value:
+                    if mapping.get("HIDKeyboardModifierMappingSrc") == 30064771129 and \
+                       mapping.get("HIDKeyboardModifierMappingDst") == 30064771296:
+                        return True
+    except Exception as e:
+        print(f"Error reading plist: {e}", file=sys.stderr)
+    return False
+
+if is_mapped():
+    print("Caps Lock -> Control mapping found in System Settings. Applying globally via hidutil.")
+    # Apply global mapping to hardware layer
+    subprocess.run([
+        "hidutil", "property", "--set",
+        json.dumps({"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]})
+    ])
+else:
+    print("Caps Lock -> Control mapping NOT found in System Settings. Clearing hidutil global mapping.")
+    # Clear global mapping
+    subprocess.run(["hidutil", "property", "--set", json.dumps({"UserKeyMapping":[]})])
+'
