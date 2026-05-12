@@ -90,6 +90,7 @@
     "html": true,
     "catppuccin": true,
     "catppuccin-icons": true,
+    "swift": true,
   },
   "languages": {
     "Ruby": {
@@ -101,6 +102,9 @@
         "!sorbet",
         "...",
       ],
+    },
+    "Swift": {
+      "enable_language_server": false,
     },
   },
   "lsp": {
