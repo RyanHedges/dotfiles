@@ -206,3 +206,8 @@ alias gbcl=cleanup_git_branches
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+# Load SSH keys from Apple Keychain if the agent is empty
+if ! ssh-add -l >/dev/null 2>&1; then
+  ssh-add --apple-load-keychain >/dev/null 2>&1
+fi
