@@ -37,3 +37,7 @@ FileUtils.mkdir_p(config_dir)
 linker.link(".config/git-ps", "git-ps")
 linker.link(".config/zed", "zed")
 linker.link(".config/opencode", "opencode")
+
+launch_agents_dir = File.expand_path("~/Library/LaunchAgents")
+FileUtils.mkdir_p(launch_agents_dir)
+linker.link("Library/LaunchAgents/com.local.KeyRemapping.plist", "launch-agents/com.local.KeyRemapping.plist")
