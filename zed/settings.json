@@ -8,11 +8,16 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent_servers": {
-    "OpenCode": {
-      "type": "custom",
-      "command": "opencode",
-      "args": ["acp"],
-      "env": {},
+    "opencode": {
+      "favorite_config_option_values": {
+        "model": [
+          "opencode/big-pickle",
+          "opencode/nemotron-3-super-free/high",
+          "opencode/hy3-preview-free/high",
+          "opencode/minimax-m2.5-free",
+        ],
+      },
+      "type": "registry",
     },
   },
   "debugger": {
