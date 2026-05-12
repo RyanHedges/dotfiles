@@ -7,7 +7,7 @@ class DotfileLinker
   def initialize(dotfiles_path)
     @dotfiles_path = Pathname.new(dotfiles_path)
     @base_path = @dotfiles_path.expand_path
-    @home_dir = Pathname.new("./")
+    @home_dir = Pathname.new(Dir.home)
   end
 
   def link(pointer_file, source_file)
